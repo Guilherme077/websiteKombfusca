@@ -1,5 +1,7 @@
 <?php
 
+$jogadores = [];
+
 if ($_FILES['picture']['error'] === UPLOAD_ERR_OK) {
     $caminhoTemporario = $_FILES['picture']['tmp_name'];
 
@@ -23,10 +25,9 @@ if ($_FILES['picture']['error'] === UPLOAD_ERR_OK) {
         $data = json_decode($response, true);
         
         for ($i = 0; $i < 4; $i++){
-            echo "Jogador $i: ";
-            echo "Kombi" . $data["Player $i"]["kombi"];
-            echo "Fusca" . $data["Player $i"]["fusca"];
-            echo "New Beetle" . $data["Player $i"]["new beetle"];
+            $jogadores[$i][0] = $data["Player $i"]["kombi"];
+            $jogadores[$i][1] = $data["Player $i"]["fusca"];
+            $jogadores[$i][2] = $data["Player $i"]["new beetle"];
         }
     } else {
         echo "Ocorreu um erro. Código HTTP: $httpCode";
@@ -35,3 +36,40 @@ if ($_FILES['picture']['error'] === UPLOAD_ERR_OK) {
     echo "Nenhuma imagem foi enviada.";
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar pontuação</title>
+</head>
+<body>
+    <span>Identificamos as seguintes quantidades de cada veículo:</span>
+    <table border="1">
+        <tr>
+            <th>Jogador</th>
+            <th>Kombi</th>
+            <th>Fusca</th>
+            <th>New Beetle</th>
+        </tr>
+        <?php
+        for($i = 0; $i < 4; $i++){
+            $k = $jogadores[$i][0];
+            $f = $jogadores[$i][1];
+            $n = $jogadores[$i][2];
+            echo "
+            <tr>
+                <td>$i</td>
+                <td>$k</td>
+                <td>$f</td>
+                <td>$n</td>
+            </tr>
+            ";
+        }
+        ?>
+    </table>
+    <span>Deseja confirmar estes resultados?</span>
+    
+</body>
+</html>
