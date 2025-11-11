@@ -70,6 +70,10 @@ if ($_FILES['picture']['error'] === UPLOAD_ERR_OK) {
         ?>
     </table>
     <span>Deseja confirmar estes resultados?</span>
-    
+    <form action="" method="post">
+        <input type="submit" value="Sim, confirmo os resultados">
+        <input type="submit" value="Não, ir para edição manual">
+        <input type="submit" value="Não, repetir foto">
+    </form>
 </body>
 </html>
