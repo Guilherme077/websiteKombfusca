@@ -12,6 +12,8 @@
     <form action="checkScoreSheet.php" method="post" enctype="multipart/form-data">
         <input type="file" name="picture" id="picture">
         <input type="submit" name="withPicture" value="Continuar para validação">
+    </form>
+    <form action="confirmScore.php" method="post">
         <input type="submit" name="noPicture" value="Continuar SEM foto">
     </form>
 </body>
