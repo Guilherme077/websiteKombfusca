@@ -2,7 +2,7 @@
 
 $jogadores = [];
 
-if ($_FILES['picture']['error'] === UPLOAD_ERR_OK) {
+if (isset($_FILES['picture']) && $_FILES['picture']['error'] === UPLOAD_ERR_OK) {
     $caminhoTemporario = $_FILES['picture']['tmp_name'];
 
     $url = "http://127.0.0.1:5000/scorecounter";
@@ -31,9 +31,11 @@ if ($_FILES['picture']['error'] === UPLOAD_ERR_OK) {
         }
     } else {
         echo "Ocorreu um erro. Código HTTP: $httpCode";
+        exit;
     }
 } else {
     echo "Nenhuma imagem foi enviada.";
+    exit;
 }
 ?>
 
